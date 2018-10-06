@@ -49,40 +49,66 @@
 </head>
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#btn").click(function() {
-            $("#img").show('slow');
-            $("#btn").hide();
-            $("#btn2").show('slow');
+        
+          $.ajax({  
+            type: 'post',
+            url: 'http://teste.samuteles.com/api/InsertMensagem.php',
+             dataType:'json',
+            data:{tipo: "pesquisa"},
+            success: function(data){
+            $("#table").empty();
+            var acumul = "";
+            for (var i = 0; i < data.length; i++) {
+                acumul += "<tr>";
+                acumul += "<td>"+data[i].Id+"</td>";
+                acumul += "<td>"+data[i].Mensagem+"</td>";
+                acumul += "</tr>";
+            }
+            $("#table").append(acumul);
+            
+        }
+    });
+
+        $("#btncadastrar").click(function(){//Aqui quando ele clicar no botão vai fazer as ações que estão abaixo
+                var mensagem = $('#mensagem').val();//declarando o valor de uma variavel
+              
+
+                $.ajax({
+                    type : 'post',//aqui ele esta falando qual vai ser o formato que ele vai passar o valor de uma pagina para outra
+                    url: 'http://teste.samuteles.com/api/InsertMensagem.php',//aqui eles estadando o link para onde esse valor tem que ir 
+                    data:{'mensagem': mensagem, 'tipo': "cad"},
+                    success: function(data){//aqui ele retorna o resultado 
+                        
+                    alert("Dados cadastrado com sucesso!");//aqui ele exibe uma mensagem 
+                }
+
+            });
+                window.location.reload();
         });
-         $("#btn2").click(function() {
-            $("#img").hide();
-            $("#btn").show();
-            $("#btn2").hide();
-        });
-       
         
     });
 </script>
 <body>
+    <center>
+    <label class="label_text" for="placa"><b>Mensagem para o SAMU:</b></label>
+    </center>
+    <input type="text" id="mensagem" class="form-control"><br>
+    <center><button type="button" id="btncadastrar" class="btn btn-secondary ">Cadastrar</button></center>
     <br>
     <br>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    
-    <center><div>
-        <img id="img" src="img/1.jpg" style="display: none;" height="200px"><br>
-        <button id="btn" class="btn btn-outline-danger">Click aqui</button>
-        <button id="btn2"class="btn btn-outline-success" style="display: none;" >Voltar</button>
-    </div></center>
-    <footer class="footer bg-dark" style="position: fixed;" >
+     <table class="table">
+        <thead>
+        <tr>
+        <th>Id</th>
+        <th>Mensagem</th>
+        </tr>
+        </thead>
+        <tbody id="table"></tbody>
+    </table>
+
+    <footer class="footer bg-dark" style="" >
       <div class="content has-text-centered">
           Feito por: amor da tua vida.
        </div>
@@ -92,3 +118,4 @@
 </body>
 
 </html>
+
