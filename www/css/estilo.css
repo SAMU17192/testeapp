@@ -1,0 +1,32 @@
+*  {
+    margin:0;
+    padding:0;
+}
+
+html, body {height:auto;}
+
+
+
+.footer {
+    position:static;
+    bottom:0;
+    width:100%;
+    height: 6% !important;
+    text-align: center;
+}
+
+
+
+
+.label_text{
+	font-size: 30px;
+	color:#000;
+}
+.color_textbox{
+	background-color: black;
+	color: white;
+}
+.color_textbox:focus{
+	background-color: black;
+	color: white;
+}
