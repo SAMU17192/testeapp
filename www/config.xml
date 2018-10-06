@@ -6,10 +6,10 @@
         id        = "com.phonegap.helloworld"
         version   = "1.0.0">
 
-    <name>Teste</name>
+    <name>CMVSANU</name>
 
     <description>
-        Teste.
+        Aplicativo para SAMU Tatuí.
     </description>
 
     <author href="http://phonegap.com" email="support@phonegap.com">
